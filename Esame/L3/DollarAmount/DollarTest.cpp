@@ -29,5 +29,25 @@ int main () {
     cout << d2.toString() << "\n";
 
     cout << "Enter integer interest rate and divisor. For example:\n"
-        << "for  ";
+        << "for    2%, enter:    2 100\n"
+        << "for  2.3%, enter:   23 1000\n"
+        << "for 2.37%, enter:  237 10000\n";
+    int rate;
+    int divisor;
+    cin >> rate >> divisor;
+
+    DollarAmount balance {100000}; //$1000.00
+    cout << "\nInitial balance: " << balance.toString() << endl;
+
+    //display headers
+    cout << "\nYear" << setw(20) << "Amount on deposit" << endl;
+
+    //calculate amount for each of ten years
+    for (unsigned int year{1}; year<=10; year++) {
+        //increase balance by rate %
+        balance.addInterest(rate,divisor);
+
+        //display the year and amount
+        cout << setw(4) << year << setw(20) << balance.toString() << endl;
+    }
 }

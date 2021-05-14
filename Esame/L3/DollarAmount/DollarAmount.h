@@ -6,11 +6,20 @@
 
 #include <string>
 #include <cmath>
+#include <stdexcept>
 
 class DollarAmount {
     public:
     //int64_t value constructor
     explicit DollarAmount (int64_t value): amount{value} {}
+
+    //constructor with 2 parameters
+    DollarAmount (int dollars, int cents) {
+        if (dollars<0 || cents<0)
+            throw std::invalid_argument ("Cannot be negative values");
+        
+        amount = dollars*100 + cents;
+    }
 
     //add right's amount
     void add(DollarAmount right) {
@@ -20,6 +29,11 @@ class DollarAmount {
     //subtract right's amount
     void subtract(DollarAmount right) {
         amount -= right.amount;
+    }
+
+    //divide by an integer value
+    void divide (int divisor) {
+        amount /= divisor;
     }
 
     //calculate and add interest
