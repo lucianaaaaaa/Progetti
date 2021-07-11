@@ -96,3 +96,35 @@ Polynomial operator*(const Polynomial& p, double a) {
     newPoly*=a;
     return newPoly;
 }
+
+bool Polynomial::operator==(const Polynomial& p) const {
+    if (size!=p.size) return false;
+    for (int i=0; i<size; i++) {
+        if  (coefs[i]!=p.coefs[i]) return false;
+    }
+    return true;
+}
+
+Polynomial& Polynomial::operator*=(const Polynomial& p) {
+    //backup and delete lhs polynomial
+    Polynomial newPoly(*this);
+    delete [] coefs;
+    size = (newPoly.size + p.size)-1;
+    coefs = new double [size];
+
+    //set all coefs to 0
+    for (int i=0; i<size; i++) coefs[i]=0;
+
+    for (int i=0; i<newPoly.size; i++) {
+        for (int j=0; j<p.size; j++) {
+            coefs[i+j] += newPoly.coefs[i]*p.coefs[j];
+        }
+    }
+    return *this;
+}
+
+Polynomial operator*(const Polynomial& a, const Polynomial& b) {
+    Polynomial newPoly(a);
+    newPoly*=b;
+    return newPoly;
+}

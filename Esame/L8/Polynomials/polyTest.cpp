@@ -18,4 +18,8 @@ int main () {
     cout << "p1+p3 is " << (p1+p3) << endl;
     
     cout << "p2*=7 is " << (p2*=7) << endl;
+
+    double coeffs4[] {0,2,4,5};
+    Polynomial p4(4,coeffs4);
+    cout << "p1*p4 is " << (p1*p4) << endl;
 }

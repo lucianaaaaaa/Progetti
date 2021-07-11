@@ -21,10 +21,13 @@ class Polynomial {
         void print(std::ostream& out = std::cout) const;
 
         //operators
-        Polynomial& operator= (const Polynomial&);
+        Polynomial& operator= (const Polynomial&); //copy assignment operator
         Polynomial& operator+= (const Polynomial&);
         Polynomial& operator*= (double); //scalar multiplication
+        Polynomial& operator*= (const Polynomial&);
 
+        //relational operator
+        bool operator==(const Polynomial&) const;
     private:
         int size; //polynomial degree +1
         double* coefs; //ptr to built-in array of coefficients
@@ -36,6 +39,7 @@ std::ostream& operator<<(std::ostream& out, const Polynomial& p);
 Polynomial operator+(const Polynomial& a, const Polynomial& b);
 Polynomial operator*(double a, const Polynomial& p);
 Polynomial operator*(const Polynomial& p, double a);
+Polynomial operator*(const Polynomial& a, const Polynomial& b);
 
 int min (int a, int b);
 #endif
