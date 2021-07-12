@@ -2,6 +2,8 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
+#include <string>
+
 class Account {
     public:
         Account() : balance{0.0} {} //default
@@ -11,6 +13,7 @@ class Account {
         void debit (double amt) {balance-=amt;} //withdraw
 
         double getBalance() const {return balance;}
+        virtual std::string type() const {return "Account";}
     private:
         double balance;
 };

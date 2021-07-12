@@ -16,7 +16,7 @@ class CheckingAccount: public Account {
         }
         
         double getTotalFees() const {return totalFees;}
-        std::string type() {return "Checking Account";}
+        virtual std::string type() const override {return "Checking Account";}
     private:
         double totalFees;
         double atmFee;

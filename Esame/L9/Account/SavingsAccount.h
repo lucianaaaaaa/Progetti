@@ -17,7 +17,8 @@ class SavingsAccount: public Account {
             return b;
         }
 
-        std::string type() {return "Saving Account";}
+        double calculateInterest () const {return annualRate*getBalance();}
+        virtual std::string type() const override {return "Saving Account";}
     private:
         double annualRate;
 };
