@@ -15,5 +15,8 @@ int main () {
     cout << "Removed first and back elements: " << myList.toString() << endl;
     cout << "Inserimento" << endl;
     myList.insertOrder(1.5);
+    myList.insertOrder(3.5);
+    myList.insertOrder(1.5);
+    myList.insertOrder(0.5);
     cout << myList.toString();
 }

@@ -85,7 +85,6 @@ NODETYPE LinkedList<NODETYPE>::operator[] (int i) {
     }
     
     NODETYPE n=v->elem;
-    delete[] v;
     return n;
 }
 
