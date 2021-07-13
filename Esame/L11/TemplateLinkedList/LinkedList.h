@@ -33,6 +33,7 @@ template <typename NODETYPE>
 LinkedList<NODETYPE>::~LinkedList() {
     while (!empty()) removeFront();
     n=0;
+    delete[] head;
 }
 
 //is list empty?
@@ -77,7 +78,19 @@ int LinkedList<NODETYPE>::size() const {return n;}
 
 template <typename NODETYPE>
 NODETYPE LinkedList<NODETYPE>::operator[] (int i) {
-    LinkedList <NODETYPE> second;
+    if (i>=n) throw std::invalid_argument("Index argument out of boundaries");
+    Node<NODETYPE>* v = head;
+    for (int j=0; j<i; j++) {
+        v=v->next;
+    }
+    
+    NODETYPE n=v->elem;
+    delete[] v;
+    return n;
+}
+
+/*
+LinkedList <NODETYPE> second;
     for (int j=0; j<i; j++) {//leggi, salva e rimuovi
     second.addFront(front());
     removeFront();
@@ -92,4 +105,4 @@ NODETYPE LinkedList<NODETYPE>::operator[] (int i) {
 
     second.~LinkedList();
     return node;
-}
+*/
