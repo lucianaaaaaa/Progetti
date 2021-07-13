@@ -80,7 +80,7 @@ void DLinkedList<T>::remove(DNode<T>*v) {
     DNode<T>* w = v->next;
     u->next= w;
     w->prev= u;
-    delete[] v;
+    delete v;
 }
 
 template <typename T>
@@ -113,8 +113,6 @@ std::string DLinkedList<T>::toString() const{
         v=v->next;
     }
     out << v->elem;
-
-    delete v;
     return out.str();
 }
 
