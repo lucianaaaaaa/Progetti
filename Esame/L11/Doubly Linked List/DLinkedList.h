@@ -18,6 +18,8 @@ class DLinkedList {
         void removeFront();
         void removeBack();
         std::string toString() const; //prints list
+
+        void insertOrder(const T& e); //insert element e in order
     private:
         DNode<T>* header; //ptr to front of list
         DNode<T>* trailer; //ptr to end of list
@@ -115,3 +117,13 @@ std::string DLinkedList<T>::toString() const{
     delete v;
     return out.str();
 }
+
+template<typename T>
+void DLinkedList<T>::insertOrder(const T& e) {
+    DNode<T>* v = header->next;
+    while (v!=trailer) {
+        if(e<v->elem) break;
+        v=v->next;
+    }
+    add(v,e);
+    }
