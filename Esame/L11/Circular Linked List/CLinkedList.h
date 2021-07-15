@@ -1,7 +1,11 @@
 //CLinkedList.h
 //circular linked list
 
+#ifndef CLIST_H
+#define CLIST_H
+
 #include "CNode.h"
+#include "Iterator.h"
 #include <stdexcept>
 #include <sstream>
 
@@ -17,6 +21,10 @@ class CLinkedList {
         void add(const T& e); //add after cursor 
         void remove(); //remove after cursor
         std::string toString();
+
+        //iterators
+        Iterator<T> begin(); //after cursor
+        Iterator<T> end(); //at cursor
     private:
         CNode<T>* cursor;
 };
@@ -94,3 +102,15 @@ std::string CLinkedList<T>::toString() {
     }
     return out.str();
 }
+
+template <typename T>
+Iterator<T> CLinkedList<T>::begin() {
+    return Iterator<T>(cursor->next);
+}
+
+template <typename T>
+Iterator<T> CLinkedList<T>::end() {
+    return Iterator<T>(cursor);
+}
+
+#endif

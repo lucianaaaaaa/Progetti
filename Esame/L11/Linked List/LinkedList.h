@@ -14,7 +14,7 @@ class LinkedList {
         void addFront(const NODETYPE& e);   //add to front of list
         void removeFront();                 //remove from front of list
         int size() const;                   //number of elements in list
-        NODETYPE operator[](int i) const;   //returns i-th element (i=0:front)
+        const NODETYPE& operator[](int i) const;   //returns i-th element (i=0:front)
 
         LinkedList(const LinkedList<NODETYPE>& list); //copy constructor
         LinkedList& operator=(const LinkedList<NODETYPE>& list); //assignment operator
@@ -84,7 +84,7 @@ int LinkedList<NODETYPE>::size() const {
 }
 
 template <typename NODETYPE>
-NODETYPE LinkedList<NODETYPE>::operator[] (int i) const{
+const NODETYPE& LinkedList<NODETYPE>::operator[] (int i) const{
     if (i>=size()) throw std::invalid_argument("Index argument out of boundaries");
     Node<NODETYPE>* v = head;
     for (int j=0; j<i; j++) {

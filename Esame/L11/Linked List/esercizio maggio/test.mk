@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-std=c++11
-DEPS = CLinkedLIst.h CNode.h Iterator.h
-OBJ = test.o
+DEPS = LinkedLIst.h Node.h
+OBJ = doubleList.o
 
 %.o: %.cpp $(DEPS)
 		$(CC) -c -o $@ $< $(CFLAGS)

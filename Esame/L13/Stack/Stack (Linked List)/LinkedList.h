@@ -13,7 +13,11 @@ class LinkedList {
         const NODETYPE& front() const;      //get front element
         void addFront(const NODETYPE& e);   //add to front of list
         void removeFront();                 //remove from front of list
+        int size() const;                   //number of elements in list
+        NODETYPE operator[](int i) const;   //returns i-th element (i=0:front)
 
+        LinkedList(const LinkedList<NODETYPE>& list); //copy constructor
+        LinkedList& operator=(const LinkedList<NODETYPE>& list); //assignment operator
     private:
         Node<NODETYPE>* head;
 };
@@ -29,6 +33,7 @@ LinkedList<NODETYPE>::LinkedList()
 template <typename NODETYPE>
 LinkedList<NODETYPE>::~LinkedList() {
     while (!empty()) removeFront();
+    delete[] head;
 }
 
 //is list empty?
@@ -62,4 +67,54 @@ void LinkedList<NODETYPE>::removeFront() {
     Node <NODETYPE>* old = head;
     head = old->next;
     delete [] old;
+}
+
+template <typename NODETYPE>
+int LinkedList<NODETYPE>::size() const {
+    if (empty()) return 0;
+    //else
+    Node<NODETYPE>* v=head;
+    int i=0;
+    while (v) {
+        v=v->next;
+        i++;
+    }
+    delete[] v;
+    return i;
+}
+
+template <typename NODETYPE>
+NODETYPE LinkedList<NODETYPE>::operator[] (int i) const{
+    if (i>=size()) throw std::invalid_argument("Index argument out of boundaries");
+    Node<NODETYPE>* v = head;
+    for (int j=0; j<i; j++) {
+        v=v->next;
+    }
+    
+    return v->elem;
+}
+
+
+template <typename NODETYPE>
+LinkedList<NODETYPE>::LinkedList(const LinkedList<NODETYPE>& list) 
+    : head{nullptr} {
+    NODETYPE elem;
+    for (int i=(list.size()-1); i>=0; i--) {
+        elem = list[i];
+        addFront(elem);
+    }
+}
+
+template <typename NODETYPE>
+LinkedList<NODETYPE>& LinkedList<NODETYPE>::operator=(const LinkedList<NODETYPE>& list) {
+    //delete previous nodes
+    while (!empty()) removeFront();
+
+    //build new list
+    NODETYPE elem;
+    for (int i=(list.size()-1); i>=0; i--) {
+        elem = list[i];
+        addFront(elem);
+    }
+    return *this;
 }

@@ -14,5 +14,14 @@ int main () {
     playList.remove();
     playList.add("Caravan");
     cout << playList.toString() << endl;
+
+ {  Iterator<string> p(playList.end());
+    cout << *p << endl;
+    }
+    cout << playList.back() << endl;
+
+    for (auto p(playList.begin()); p!=playList.end(); ++p)
+        cout << *p << "\t";
+    cout << *playList.end();
     return 0;
 }
