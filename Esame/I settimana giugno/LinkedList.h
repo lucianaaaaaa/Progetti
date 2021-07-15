@@ -1,6 +1,10 @@
 //LinkedList.h
 //generic linked list
 
+
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
 #include "Node.h"
 #include <iostream>
 
@@ -118,3 +122,5 @@ LinkedList<NODETYPE>& LinkedList<NODETYPE>::operator=(const LinkedList<NODETYPE>
     }
     return *this;
 }
+
+#endif

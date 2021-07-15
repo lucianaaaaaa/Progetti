@@ -1,5 +1,8 @@
 //Node.h
 
+#ifndef NODE_H
+#define NODE_H
+
 template <typename NODETYPE> 
 class LinkedList; //forward declaration to include it as a friend
 
@@ -11,3 +14,5 @@ class Node {
 
         friend class LinkedList<NODETYPE>;
 };
+
+#endif
