@@ -24,6 +24,10 @@ int main () {
 
 
     cout << "Stampo seconda lista" << endl;
-    DLinkedList <double> list2 (myList);
+    DLinkedList <double> list2 ;
+    list2 = myList;
     cout << list2.toString() << endl;
+    list2.removeBack();
+    cout << "Stampo prima lista: " << myList.toString() << endl;
+    cout << "Stampo seconda lista (modificata): " << list2.toString() << endl;
 }

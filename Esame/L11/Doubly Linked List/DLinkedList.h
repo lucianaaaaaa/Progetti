@@ -173,3 +173,15 @@ const T& DLinkedList<T>::operator[] (int i) const{
     
     return v->elem;
 }
+
+template <typename T>
+DLinkedList<T>& DLinkedList<T>::operator=(const DLinkedList<T>& list) {
+    while (!empty()) removeFront(); //destroy previous nodes
+
+    //add new nodes
+    T elem;
+        for (int i=0; i<list.size(); i++) {
+            elem = list[i];
+            addBack(elem);
+        }
+}
