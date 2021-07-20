@@ -10,7 +10,12 @@ class DLinkedList {
     public:
         DLinkedList();
         ~DLinkedList();
+
+        DLinkedList (const DLinkedList<T>& list);
+        DLinkedList& operator=(const DLinkedList<T>& list);
+
         bool empty() const;
+        int size() const;
         const T& front() const;
         const T& back() const;
         void addFront(const T& e);
@@ -18,6 +23,8 @@ class DLinkedList {
         void removeFront();
         void removeBack();
         std::string toString() const; //prints list
+
+        const T& operator[] (int i) const;
 
         void insertOrder(const T& e); //insert element e in order
     private:
@@ -49,6 +56,17 @@ DLinkedList<T>::~DLinkedList() {
 template <typename T>
 bool DLinkedList<T>::empty() const {
     return (header->next==trailer);
+}
+
+template <typename T>
+int DLinkedList<T>::size() const {
+    DNode<T>* v = header->next;
+    int i = 0;
+    while (v!=trailer) {
+        i++;
+        v = v->next;
+    } 
+    return i;
 }
 
 template <typename T>
@@ -124,4 +142,34 @@ void DLinkedList<T>::insertOrder(const T& e) {
         v=v->next;
     }
     add(v,e);
+
     }
+
+
+//copy constructor
+template <typename T>
+DLinkedList<T>::DLinkedList(const DLinkedList<T>& list)
+    : header{new DNode<T>}, trailer {new DNode<T>} {
+        header->next = trailer;
+        header->prev = nullptr;
+        trailer->prev = header;
+        trailer->next = nullptr;
+
+        T elem;
+        for (int i=0; i<list.size(); i++) {
+            elem = list[i];
+            addBack(elem);
+        }
+
+}
+
+template <typename T>
+const T& DLinkedList<T>::operator[] (int i) const{
+    if (i>=size()) throw std::invalid_argument("Index argument out of boundaries");
+    DNode<T>* v = header->next;
+    for (int j=0; j<i; j++) {
+        v=v->next;
+    }
+    
+    return v->elem;
+}

@@ -18,5 +18,12 @@ int main () {
     myList.insertOrder(3.5);
     myList.insertOrder(1.5);
     myList.insertOrder(0.5);
-    cout << myList.toString();
+    cout << myList.toString() << endl;
+    cout << "Size: " << myList.size() << endl;
+    cout << "myList[2]= " << myList[2] << endl;
+
+
+    cout << "Stampo seconda lista" << endl;
+    DLinkedList <double> list2 (myList);
+    cout << list2.toString() << endl;
 }
