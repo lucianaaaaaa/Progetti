@@ -15,13 +15,22 @@ int main () {
     playList.add("Caravan");
     cout << playList.toString() << endl;
 
+
  {  Iterator<string> p(playList.end());
     cout << *p << endl;
     }
     cout << playList.back() << endl;
 
-    for (auto p(playList.begin()); p!=playList.end(); ++p)
+    for (Iterator<string> p(playList.begin()); p!=playList.end(); ++p)
         cout << *p << "\t";
-    cout << *playList.end();
+    cout << playList.back() << endl;
+
+
+    CLinkedList<string> list2=playList;
+    cout << "\n" << list2.toString() << "\n";
+    cout << "\n" << playList.toString() << "\n";
+    list2.remove();
+    cout << "\n" << list2.toString() << "\n";
+    cout << "\n" << playList.toString() << "\n";
     return 0;
 }

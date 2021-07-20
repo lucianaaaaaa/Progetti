@@ -22,6 +22,9 @@ class CLinkedList {
         void remove(); //remove after cursor
         std::string toString();
 
+        CLinkedList(CLinkedList<T>& list);
+        CLinkedList& operator=(CLinkedList<T>& list);
+
         //iterators
         Iterator<T> begin(); //after cursor
         Iterator<T> end(); //at cursor
@@ -90,7 +93,7 @@ std::string CLinkedList<T>::toString() {
     else {
     CNode<T>* v = cursor;
     
-    out << "Cursor --> ";
+    out << "Cursor (back) = ";
     out << v->elem << " --> ";
     v=v->next;
     while (v!=cursor) {
@@ -111,6 +114,45 @@ Iterator<T> CLinkedList<T>::begin() {
 template <typename T>
 Iterator<T> CLinkedList<T>::end() {
     return Iterator<T>(cursor);
+}
+
+
+template <typename T>
+CLinkedList<T>::CLinkedList(CLinkedList<T>& list) {
+    cursor = nullptr; //initialize empty list
+
+    T elem;
+    Iterator<T> i (list.begin());
+    while (i!=list.end()) {
+
+        elem = *i; //get element from list
+        add(elem); //add at front
+        advance(); //move cursor
+        ++i;
+    }
+    //add last element
+        elem = list.back(); 
+        add(elem); 
+        advance();
+}
+
+template <typename T>
+CLinkedList<T>& CLinkedList<T>::operator=(CLinkedList<T>& list) {
+    while (!empty()) remove();
+
+    T elem;
+    Iterator<T> i (list.begin());
+    while (i!=list.end()) {
+
+        elem = *i; //get element from list
+        add(elem); //add at front
+        advance(); //move cursor
+        ++i;
+    }
+    //add last element
+        elem = list.back(); 
+        add(elem); 
+        advance();
 }
 
 #endif

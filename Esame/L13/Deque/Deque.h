@@ -15,7 +15,9 @@ class Deque {
         void insertFront(const T& e);
         void insertBack(const T& e);
         void removeFront();
-        void removeBack();         
+        void removeBack();  
+
+        std::string toString();       
     private:
         DLinkedList<T> dlist;
         int n;
@@ -61,3 +63,8 @@ void Deque<T>::removeBack() {
     dlist.removeBack();
     n--;
     }
+
+template <typename T>
+std::string Deque<T>::toString() {
+    return dlist.toString();
+}
